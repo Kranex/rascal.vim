@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.rsc set filetype=rascal
+au BufNewFile,BufRead *.rsc setfiletype rascal
