@@ -1,32 +1,68 @@
+" Vim syntax file
+" Language: rascal
+" Maintainer: Kranex <oliverstrik@gmail.com>
+" URL: https://github.com/kranex/rascal.vim/syntax/rascal.vim
+" Last Change: 2019-11-14
+
+
 if exists("b: current_syntax")
   finish
 endif
 
-" modules
-syntax keyword rascalModule module import extend
+syntax match rascalComment "\v\/\/.*"
+syntax region rascalComment start=/\v\/\*/ end=/\v\*\//
 
-" statements
-syntax keyword rascalConditional if else switch visit
-syntax keyword rascalRepeat while for do continue break return
-syntax keyword rascalException fail throw 
-syntax keyword rascalFunction append insert
+syntax region rascalString start=/\v"/ skip=/\v\\./ end=/\v"/
+syntax match rascalNumber "\v\d"
+syntax match rascalFloat "\v\d*\.\d+"
+syntax match rascalFloat "\v\d*\.\d+"
+syntax keyword rascalBoolean true false
+
+syntax keyword rascalFunction append insert solve
+
+syntax keyword rascalConditional if else switch
+syntax keyword rascalRepeat while for visit top-down do continue break return
 syntax keyword rascalLabel default case when
-syntax keyword rascalExeption try catch finally
+syntax keyword rascalOperator mod join o all any in notin has is
+syntax match   rascalOperator "\v\+"
+syntax match   rascalOperator "\v\-"
+syntax match   rascalOperator "\v\*"
+syntax match   rascalOperator "\v\/"
+syntax match   rascalOperator "\v\%"
+syntax match   rascalOperator "\v\&\&"
+syntax match   rascalOperator "\v\|\|"
+syntax match   rascalOperator "\v\=\="
+syntax match   rascalOperator "\v\!\="
+syntax match   rascalOperator "\v\>"
+syntax match   rascalOperator "\v\<"
+syntax match   rascalOperator "\v\&\="
+syntax match   rascalOperator "\v\:\="
+syntax match   rascalOperator "\v\="
+syntax keyword rascalKeyword data alias anno private test start syntax lexical layout keyword
+syntax keyword rascalException fail throw try catch finally
 
-" functional operators
-syntax keyword rascalOperator mod join o
-syntax keyword rascalOperator all any
-syntax keyword rascalOperator in notin has is
+syntax keyword rascalExternal module import extend java
 
-" types
-syntax keyword rascalType bool int real rat num str datetime loc
-syntax keyword rascalType tuple
-syntax keyword rascalType node
-syntax keyword rascalType list set map rel lrel
-syntax keyword rascalType value type
+syntax keyword rascalType bool int real rat num str datetime loc tuple node list set map rel lrel value type
+syntax keyword rascalType void
 
-highlight link rascalModule Keyword
+highlight link rascalComment Comment
+
+highlight link rascalString String
+highlight link rascalNumber Number
+highlight link rascalFloat Float
+highlight link rascalBoolean Boolean
+
 highlight link rascalFunction Function
+
+highlight link rascalConditional Conditional
+highlight link rascalRepeat Repeat
+highlight link rascalLabel Label
+highlight link rascalOperator Operator
+highlight link rascalException Exception
+
+highlight link rascalExternal Include
+
 highlight link rascalType Type
 
 let b:current_syntax = "rascal"
