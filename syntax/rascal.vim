@@ -9,13 +9,11 @@ if exists("b: current_syntax")
   finish
 endif
 
-syntax match rascalComment "\v\/\/.*"
-syntax region rascalComment start=/\v\/\*/ end=/\v\*\//
 
 syntax region rascalString start=/\v"/ skip=/\v\\./ end=/\v"/
-syntax match rascalNumber "\v\d"
-syntax match rascalFloat "\v\d*\.\d+"
-syntax match rascalFloat "\v\d*\.\d+"
+syntax match rascalNumber "\v\A\zs\d\ze\A"
+syntax match rascalFloat "\v\A\zs\d*\.\d+\ze\A"
+syntax match rascalFloat "\v\A\zs\d*\.\d+\ze\A"
 syntax keyword rascalBoolean true false
 
 syntax keyword rascalFunction append insert solve
@@ -45,6 +43,9 @@ syntax keyword rascalExternal module import extend java
 
 syntax keyword rascalType bool int real rat num str datetime loc tuple node list set map rel lrel value type
 syntax keyword rascalType void
+
+syntax match rascalComment "\v\/\/.*$"
+syntax region rascalComment start=/\v\/\*/ end=/\v\*\//
 
 highlight link rascalComment Comment
 
